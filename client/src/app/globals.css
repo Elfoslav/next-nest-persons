@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0; /* Set the foreground color as RGB values */
+  --background-end-rgb: 255, 255, 255; /* Set the background end color as RGB values */
+  --background-start-rgb: 100, 100, 200; /* Set the background start color as RGB values */
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+}
+
+/* yellow does not work in tailwind for some reason */
+.bg-yellow-500 {
+  background-color: #eab308;
+}
+
+.bg-yellow-500:hover {
+  background-color: #ca8a04;
+}
