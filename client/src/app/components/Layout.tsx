@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 import { API } from '@/app/lib/consts';
+import apiClient from '@/app/lib/apiClient';
 import PersonsList from '@/app/components/PersonsList';
 import Button from './Button';
 import './Layout.scss';
@@ -10,9 +11,12 @@ import Person from '../models/Person';
 import SearchForm from './SearchForm';
 
 const fetchPersons = async (): Promise<Person[]> => {
-  const response = await fetch(API.PERSONS.GET_ALL);
-  const data: Person[] = await response.json();
-  return data;
+  try {
+    const response = await apiClient.get(API.PERSONS.GET_ALL);
+    return response.data as Person[];
+  } catch (error) {
+    throw error;
+  }
 };
 
 export default function RootLayout({
@@ -20,7 +24,12 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { isLoading, data } = useQuery('persons', fetchPersons);
+  const {
+    isLoading,
+    data,
+    error,
+  }: UseQueryResult<Person[], Error> = useQuery('persons', fetchPersons);
+
   const [filteredPersons, setFilteredPersons] = useState<Person[]>(data || [])
 
   const handleSearch = (searchText: string) => {
@@ -30,6 +39,12 @@ export default function RootLayout({
 
     setFilteredPersons(filteredData || []);
   };
+
+  useEffect(() => {
+    if (error) {
+      alert(error)
+    }
+  }, [error]);
 
   useEffect(() => {
     setFilteredPersons(data || []);

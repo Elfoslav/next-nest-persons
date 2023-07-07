@@ -6,7 +6,7 @@ import PersonDetail from '@/app/components/PersonDetail';
 
 const PersonDetailPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id }: { id?: string } = router.query;
   const queryClient = useQueryClient();
   const [person, setPerson] = useState<Person | null>(null);
 

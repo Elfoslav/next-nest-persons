@@ -2,12 +2,13 @@ import { useQueryClient, useMutation } from 'react-query';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { API } from '@/app/lib/consts';
+import apiClient from '@/app/lib/apiClient';
 import Person from '@/app/models/Person';
 import PersonForm from '@/app/components/PersonForm';
 
 const PersonEditPage = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id }: { id?: string } = router.query;
   const queryClient = useQueryClient();
   const [person, setPerson] = useState<Person | null>(null);
 
@@ -26,20 +27,14 @@ const PersonEditPage = () => {
     }
   }, [id, queryClient]);
 
-  const updatePerson = async (data: Person) => {
-    const response = await fetch(API.PERSONS.PATCH, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
-      throw new Error('Error creating person');
+  const updatePerson = async (data: Person): Promise<Person> => {
+    try {
+      const apiUrl = API.PERSONS.PATCH.replace(':id', id || '');
+      const response = await apiClient.patch(apiUrl, data);
+      return response.data as Person;
+    } catch (error) {
+      throw new Error('Error updating person');
     }
-
-    return response.json();
   };
 
   const mutation = useMutation<Person, Error, Person>(updatePerson, {

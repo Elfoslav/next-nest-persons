@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { useRouter } from 'next/router';
 import { API } from '@/app/lib/consts';
+import apiClient from '@/app/lib/apiClient';
 import PersonForm from '@/app/components/PersonForm';
 import Person from '@/app/models/Person';
 
@@ -8,20 +9,13 @@ const PersonAddPage = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
 
-  const createPerson = async (data: Person) => {
-    const response = await fetch(API.PERSONS.CREATE, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
+  const createPerson = async (data: Person): Promise<Person> => {
+    try {
+      const response = await apiClient.post(API.PERSONS.CREATE, data);
+      return response.data as Person;
+    } catch (error) {
       throw new Error('Error creating person');
     }
-
-    return response.json();
   };
 
   const mutation = useMutation<Person, Error, Person>(createPerson, {
@@ -32,7 +26,7 @@ const PersonAddPage = () => {
     },
     onError: (error) => {
       console.error(error);
-      alert(error);
+      alert(error.message);
     },
   });
 
