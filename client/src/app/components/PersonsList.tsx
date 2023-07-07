@@ -2,14 +2,10 @@
 
 import React from 'react';
 import PersonListItem from './PersonListItem';
+import Person from '../models/Person';
 
 interface PersonsListProps {
-  persons: {
-    id: number;
-    name: string;
-    age: number;
-    description: string;
-  }[];
+  persons: Person[];
 }
 
 const PersonsList: React.FC<PersonsListProps> = ({ persons }) => {

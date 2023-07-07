@@ -60,7 +60,11 @@ const PersonEditPage = () => {
 
   return (
     <div className="mt-4">
-      <PersonForm person={person} onSubmit={onSubmit} />
+      {person ? (
+        <PersonForm person={person} onSubmit={onSubmit} />
+      ) : (
+        <p>Person not found</p>
+      )}
     </div>
   );
 };

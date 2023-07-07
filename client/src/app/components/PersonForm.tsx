@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import Error from './InputErrorMessage';
 
 interface PersonFormProps {
-  person: Person,
+  person?: Person,
   onSubmit: (person: Person) => void;
 }
 

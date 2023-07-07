@@ -11,8 +11,8 @@ import SearchForm from './SearchForm';
 
 const fetchPersons = async (): Promise<Person[]> => {
   const response = await fetch(API.PERSONS.GET_ALL);
-  const data = await response.json();
-  return data as Person[];
+  const data: Person[] = await response.json();
+  return data;
 };
 
 export default function RootLayout({
@@ -24,13 +24,12 @@ export default function RootLayout({
   const [filteredPersons, setFilteredPersons] = useState<Person[]>(data || [])
 
   const handleSearch = (searchText: string) => {
-    // todo search in data object based on searchText
     const filteredData = data?.filter((person: Person) =>
       person.name.toLowerCase().includes(searchText.toLowerCase())
     );
 
     setFilteredPersons(filteredData || []);
-  }
+  };
 
   useEffect(() => {
     setFilteredPersons(data || []);
