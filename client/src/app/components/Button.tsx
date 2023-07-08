@@ -24,7 +24,7 @@ const Button: FC<ButtonProps> = ({ text, href, icon: Icon, color, size, rounded,
     }
 
     if (color) {
-      _className += ` bg-${color}-500 hover:bg-${color}-600`;
+      _className += ` bg-${color}-500 hover:bg-${color}-600 border`;
     } else {
       _className += ' bg-blue-500 hover:bg-blue-600';
     }

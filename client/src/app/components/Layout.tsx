@@ -67,7 +67,7 @@ export default function RootLayout({
         <h1 className="text-2xl font-bold">
           <Link href={`/`}>List of persons</Link>
         </h1>
-        <Button href="/persons/add" icon={PlusSmallIcon} rounded color="green" />
+        <Button href="/persons/add" icon={PlusSmallIcon} rounded color="green"  className="mr-17"/>
       </div>
       <div id="content" className="max-w-4xl mx-auto mt-4 border box-border">
         <div className="flex">

@@ -33,7 +33,7 @@ const SearchForm: React.FC<SearchFormProps> = ({ onSubmit }) => {
       />
       <button
         type="submit"
-        className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-green-500 border border-green-600 hover:bg-green-600 focus:ring-1 focus:outline-none focus:ring-green-300"
+        className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-green-500 border border-green-500 hover:bg-green-600"
       >
         <MagnifyingGlassIcon className="w-4 h-4" aria-hidden="true" />
         <span className="sr-only">Search</span>

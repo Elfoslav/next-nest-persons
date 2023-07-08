@@ -8,9 +8,9 @@
   --background-start-rgb: 100, 100, 200; /* Set the background start color as RGB values */
 }
 
-body {
+html, body {
   color: rgb(var(--foreground-rgb));
-  background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+  background-image: linear-gradient(135deg, #fdfcfb 0%, #dfd7d1 100%);
 }
 
 /* yellow does not work in tailwind for some reason */
@@ -20,4 +20,9 @@ body {
 
 .bg-yellow-500:hover {
   background-color: #ca8a04;
+}
+
+/* margins */
+.mr-17 {
+  margin-right: 17px;
 }
