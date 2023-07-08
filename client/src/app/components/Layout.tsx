@@ -72,7 +72,7 @@ export default function RootLayout({
           </div>
 
           {/* Main content */}
-          <div className="w-3/4 mx-4 mt-1 mb-5">
+          <div className="w-3/4 mx-4 mt-2 mb-5">
             {children}
           </div>
         </div>
