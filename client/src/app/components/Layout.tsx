@@ -51,7 +51,14 @@ export default function RootLayout({
   }, [data]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen flex flex-col items-center justify-center">
+        <div className="mb-4">Loading...</div>
+        <div className="flex items-center justify-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+      </div>
+    );
   }
 
   return (
