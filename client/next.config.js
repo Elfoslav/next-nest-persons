@@ -1,4 +1,8 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfigDev = require('./next.config.dev');
+const nextConfigProd = require('./next.config.prod');
 
-module.exports = nextConfig
+const isProduction = process.env.NODE_ENV === 'production';
+
+const nextConfig = isProduction ? nextConfigProd : nextConfigDev;
+
+module.exports = nextConfig;
