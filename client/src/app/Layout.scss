@@ -5,3 +5,8 @@
 #content {
   @apply bg-white rounded-lg shadow-md;
 }
+
+.mobile-sidebar {
+  top: 72px;
+  @apply border shadow-lg;
+}

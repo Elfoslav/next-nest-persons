@@ -8,8 +8,8 @@ import PersonForm from '@/app/components/PersonForm';
 
 const PersonEditPage = () => {
   const router = useRouter();
-  const { id }: { id?: string } = router.query;
   const queryClient = useQueryClient();
+  const { id }: { id?: string } = router.query;
   const [person, setPerson] = useState<Person | null>(null);
 
   // Simulating fetching data from an API
@@ -29,7 +29,7 @@ const PersonEditPage = () => {
 
   const updatePerson = async (data: Person): Promise<Person> => {
     try {
-      const apiUrl = API.PERSONS.PATCH.replace(':id', id || '');
+      const apiUrl = `${API.PERSONS}/${id}`;
       const response = await apiClient.patch(apiUrl, data);
       return response.data as Person;
     } catch (error) {

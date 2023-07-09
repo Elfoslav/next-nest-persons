@@ -11,7 +11,7 @@ const PersonAddPage = () => {
 
   const createPerson = async (data: Person): Promise<Person> => {
     try {
-      const response = await apiClient.post(API.PERSONS.CREATE, data);
+      const response = await apiClient.post(API.PERSONS, data);
       return response.data as Person;
     } catch (error) {
       throw new Error('Error creating person');
