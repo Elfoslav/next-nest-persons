@@ -85,14 +85,14 @@ export default function RootLayout({
       <div id="content" className="max-w-4xl mx-auto mt-4 border box-border">
         <div className="flex">
           {/* Sidebar */}
-          <div className="hidden lg:block w-1/4 border-r-2 min-h-[90vh]">
+          <div className="hidden lg:block w-1/4 border-r-2 min-h-[80vh]">
             {/* Sidebar content */}
             <SearchForm onSubmit={handleSearch}/>
             <PersonsList persons={filteredPersons} />
           </div>
 
           {/* Main content */}
-          <div className="w-full lg:w w-3/4 mx-4 mt-2 mb-5">
+          <div className="w-full lg:w-3/4 mx-4 mt-2 mb-5">
             {children}
           </div>
         </div>
